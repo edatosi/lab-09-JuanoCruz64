@@ -33,14 +33,12 @@ public class ListaEnlazada<T> {
 
     /** @return true si la lista no tiene elementos. */
     public boolean estaVacia() {
-        // TODO Etapa 1: escriba su código aquí
-        throw new UnsupportedOperationException("TODO: estaVacia");
+        return this.cantidad == 0;
     }
 
     /** @return número de elementos de la lista. */
     public int tamanio() {
-        // TODO Etapa 1: escriba su código aquí
-        throw new UnsupportedOperationException("TODO: tamanio");
+        return this.cantidad;
     }
 
     // =====================================================================
@@ -51,14 +49,27 @@ public class ListaEnlazada<T> {
     public void agregarAlInicio(T dato) {
         // TODO Etapa 2: cree un Nodo, enlácelo a la cabeza actual
         //               y actualice la cabeza y la cantidad.
-        throw new UnsupportedOperationException("TODO: agregarAlInicio");
+        Nodo<T> nuevo = new Nodo<>(dato);
+        nuevo.setSiguiente(this.cabeza);
+        this.cabeza=nuevo;
+        this.cantidad++;
+        // throw new UnsupportedOperationException("TODO: agregarAlInicio");
     }
 
     /** Inserta el dato como nuevo último elemento. */
     public void agregarAlFinal(T dato) {
         // TODO Etapa 2: si la lista está vacía es igual que agregarAlInicio;
         //               si no, recorra hasta el último nodo y enlace el nuevo.
-        throw new UnsupportedOperationException("TODO: agregarAlFinal");
+        if(estaVacia()){
+            agregarAlInicio(dato);
+            return;
+        }
+        Nodo<T> ultimo=this.cabeza;
+        while(ultimo.getSiguiente()!=null){
+            ultimo=ultimo.getSiguiente();
+        }
+        ultimo.setSiguiente(new Nodo<>(dato));
+        this.cantidad++;
     }
 
     // =====================================================================
@@ -67,14 +78,15 @@ public class ListaEnlazada<T> {
 
     /** @throws NoSuchElementException si la lista está vacía */
     public T obtenerPrimero() {
-        // TODO Etapa 3: escriba su código aquí
-        throw new UnsupportedOperationException("TODO: obtenerPrimero");
+        if (estaVacia()){
+            throw new NoSuchElementException("La lista está vacía");
+        }
+        return this.cabeza.getDato();
     }
 
     /** @throws NoSuchElementException si la lista está vacía */
     public T obtenerUltimo() {
-        // TODO Etapa 3: escriba su código aquí
-        throw new UnsupportedOperationException("TODO: obtenerUltimo");
+
     }
 
     /**
